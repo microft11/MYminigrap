@@ -4,7 +4,10 @@ use std::fs;
 pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
     let contents = fs::read_to_string(config.file_path)?;
 
-    println!("{}", contents);
+    // println!("{}", contents);
+    for line in search(&config.query, &contents) {
+        println!("{}", line);
+    }
 
     Ok(())
 }
@@ -32,4 +35,33 @@ impl Config {                  // OK分支是config类型，ERR分支是str
 
         Ok(Config { query, file_path })
     }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn one_result() {
+        let query = "duct";
+        let contents = "\
+Rust:
+safe, fast, productive.
+Pick three.";
+
+assert_eq!(vec!["safe, fast, productive."], search(query, contents));
+    }
+}
+
+// 字符串字面量的生命周期通常被认为是 'static
+// 确保了返回的切片引用在输入字符串切片仍然有效的情况下才能被使用
+pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
+    let mut results = Vec::new();
+
+    for line in contents.lines() {
+        if line.contains(query) {
+            results.push(line)
+        }
+    }
+    results
 }
