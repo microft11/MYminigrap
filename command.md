@@ -20,3 +20,6 @@ cargo run -- searchstring example-filename.txt
 调用 lib.rs 中的 run 函数，以启动逻辑代码的运行
 
 如果 run 返回一个错误，需要对该错误进行处理
+
+### 环境变量
+IGNORE_CASE=1 cargo run -- to poem.txt 大小写不敏感
