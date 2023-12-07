@@ -9,3 +9,5 @@ Building my own File-search-tool with Rust
 
 这里是书的链接https://course.rs/about-book.html
 感谢这本书的作者，他称得上一个伟大的知识布道者。
+
+## 用时3天，搞定~！
