@@ -23,3 +23,8 @@ cargo run -- searchstring example-filename.txt
 
 ### 环境变量
 IGNORE_CASE=1 cargo run -- to poem.txt 大小写不敏感
+
+### 输出重定向
+如果错信息输出到标准输出，那么它们将跟普通的日志信息混在一起，难以分辨，因此我们需要将错误信息进行单独输出
+
+错误信息重定向到 stderr 很简单，只需在打印错误的地方，将 println! 宏替换为 eprintln!即可

@@ -9,7 +9,7 @@ fn main() {
 
     // 对 build 返回的 `Result` 进行处理
     let config = Config::build(&args).unwrap_or_else(|err| {
-        println!("Problem parsing arguments: {err}");
+        eprintln!("Problem parsing arguments: {err}");
         process::exit(443);
     });
 
@@ -17,7 +17,7 @@ fn main() {
     println!("In file {}\n", config.file_path);
 
     if let Err(e) = minigrep::run(config) {
-        println!("Application Error: {}", e);
+        eprintln!("Application Error: {}", e);
         process::exit(443);
     }
 }
